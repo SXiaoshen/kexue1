@@ -4,7 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>科学营 第一课后练习</title>
-<script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@3.4.120/build/pdf.min.js"></script>
+<!-- 换成国内可访问镜像 -->
+<script src="https://jsd.onmicrosoft.cn/npm/pdfjs-dist@3.4.120/build/pdf.min.js"></script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{background:#eeeeee;padding:16px}
@@ -20,11 +21,9 @@ canvas{background:#ffffff;box-shadow:0 2px 12px rgba(0,0,0,0.15);}
 
 <script>
 const pdfjsLib = window['pdfjs-dist/build/pdf'];
-pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdn.jsdelivr.net/npm/pdfjs-dist@3.4.120/build/pdf.worker.min.js";
+pdfjsLib.GlobalWorkerOptions.workerSrc = "https://jsd.onmicrosoft.cn/npm/pdfjs-dist@3.4.120/build/pdf.worker.min.js";
 
-// 你的PDF文件名
 const pdfFileUrl = "./homework.pdf";
-
 const container = document.getElementById("pdf-box");
 
 pdfjsLib.getDocument(pdfFileUrl).promise.then(async (pdfDocument)=>{
@@ -39,7 +38,7 @@ pdfjsLib.getDocument(pdfFileUrl).promise.then(async (pdfDocument)=>{
         await pageObj.render({canvasContext:ctx, viewport:viewport}).promise;
     }
 }).catch(err=>{
-    container.innerHTML = `<div class="error">PDF加载失败：${err.message}<br>确认index.html和homework.pdf在仓库同一目录！</div>`
+    container.innerHTML = `<div class="error">PDF加载失败：${err.message}</div>`
 })
 </script>
 </body>
